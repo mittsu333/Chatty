@@ -1,0 +1,21 @@
+{
+    "name": "devbots",
+    "version": "1.0.0",
+    "description": "Slack app for develper communication",
+    "main": "dist/app.js",
+    "scripts": {
+        "build": "tsc -p .",
+        "build:watch": "tsc -w -p .",
+        "start": "npm run build && node dist/app.js"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@slack/bolt": "^3.8.1",
+        "dotenv": "^10.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.2",
+        "ts-node": "^10.4.0",
+        "typescript": "^4.5.4"
+    }
+}
