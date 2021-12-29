@@ -1,10 +1,10 @@
 import './../utils/env'
 import { app } from '../app'
 import { shuffle } from '../utils/arrayUtils'
-import { singleQuestion } from '../constants/messageConst'
+import { singleQuestion } from '../models/messageModel'
 
 // ユーザー選択割合
-const SELECT_RATE = 2
+const SELECT_RATE = 3
 // ユーザー選択上限数
 const SELECT_LIMIT_COUNT = 5
 

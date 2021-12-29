@@ -1,35 +1,9 @@
-import { KnownBlock, PlainTextOption } from '@slack/types'
+import { KnownBlock } from '@slack/types'
+import { questions } from '../data/questions'
 
 export const answerAction = "answer_action"
 export const nextQuestionAction = "next_question_action"
 export const textInputAction = "plain_text_input-action"
-
-export const questions: PlainTextOption[] = [
-    {
-        "text": {
-            "type": "plain_text",
-            "text": "最近気になっている話題は？",
-            "emoji": true
-        },
-        "value": "q1"
-    },
-    {
-        "text": {
-            "type": "plain_text",
-            "text": "最近のプロジェクト（仕事）であったことは？",
-            "emoji": true
-        },
-        "value": "q2"
-    },
-    {
-        "text": {
-            "type": "plain_text",
-            "text": "最近買って良かったものは？",
-            "emoji": true
-        },
-        "value": "q3"
-    },
-]
 
 export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
     var qList = questions.filter(q => !questionValues.includes(q.value ?? ''))
@@ -81,37 +55,3 @@ export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
         }
     ]
 }
-
-// export const freeQA: KnownBlock[] = [
-//     {
-//         "type": "input",
-//         "element": {
-//             "type": "static_select",
-//             "placeholder": {
-//                 "type": "plain_text",
-//                 "text": "話題を選択",
-//                 "emoji": true
-//             },
-//             "options": questions,
-//             "action_id": "static_select-action"
-//         },
-//         "label": {
-//             "type": "plain_text",
-//             "text": "話題を選択してください",
-//             "emoji": true
-//         }
-//     },
-//     {
-//         "type": "input",
-//         "element": {
-//             "type": "plain_text_input",
-//             "multiline": true,
-//             "action_id": textInputAction
-//         },
-//         "label": {
-//             "type": "plain_text",
-//             "text": "Label",
-//             "emoji": true
-//         }
-//     }
-// ]

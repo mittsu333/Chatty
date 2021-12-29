@@ -5,7 +5,7 @@ import {
     nextQuestionAction,
     textInputAction,
     singleQuestion
-} from '../constants/messageConst'
+} from '../models/messageModel'
 
 export default function () {
 
