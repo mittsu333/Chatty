@@ -7,7 +7,7 @@ import {
     singleQuestion
 } from '../models/messageModel'
 
-export default function () {
+export function messageEvent() {
 
     app.action(nextQuestionAction, async ({ body, ack }) => {
         try {

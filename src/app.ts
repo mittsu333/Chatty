@@ -1,7 +1,7 @@
 import './utils/env'
 import { App, LogLevel } from '@slack/bolt'
-import messageEvent from './events/messageEvent'
-import pickupUsers from './events/pickupEvent'
+import { messageEvent } from './events/messageEvent'
+import { pickupUsers } from './events/pickupEvent'
 
 export const app = new App({
     token: process.env.SLACK_BOT_TOKEN,

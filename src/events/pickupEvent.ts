@@ -8,7 +8,7 @@ const SELECT_RATE = 3
 // ユーザー選択上限数
 const SELECT_LIMIT_COUNT = 5
 
-export default async function pickupUsers() {
+export async function pickupUsers() {
     const channelId = process.env.POST_CHANNEL_ID
     const botId = process.env.BOT_ID
     if (!channelId || !botId) {
