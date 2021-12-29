@@ -1,10 +1,8 @@
-import { KnownBlock, PlainTextOption } from '@slack/types';
+import { KnownBlock, PlainTextOption } from '@slack/types'
 
 export const answerAction = "answer_action"
 export const nextQuestionAction = "next_question_action"
-
 export const textInputAction = "plain_text_input-action"
-
 
 export const questions: PlainTextOption[] = [
     {

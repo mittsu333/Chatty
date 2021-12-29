@@ -1,7 +1,7 @@
-import './../utils/env';
-import { app } from '../app';
-import { shuffle } from '../utils/arrayUtils';
-import { singleQuestion } from '../constants/messageConst';
+import './../utils/env'
+import { app } from '../app'
+import { shuffle } from '../utils/arrayUtils'
+import { singleQuestion } from '../constants/messageConst'
 
 // ユーザー選択割合
 const SELECT_RATE = 2

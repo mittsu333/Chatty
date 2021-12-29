@@ -1,11 +1,11 @@
-import './../utils/env';
-import { app } from '../app';
+import './../utils/env'
+import { app } from '../app'
 import {
     answerAction,
     nextQuestionAction,
     textInputAction,
     singleQuestion
-} from '../constants/messageConst';
+} from '../constants/messageConst'
 
 export default function () {
 
