@@ -23,11 +23,24 @@ export const questions: PlainTextOption[] = [
         },
         "value": "q2"
     },
+    {
+        "text": {
+            "type": "plain_text",
+            "text": "最近買って良かったものは？",
+            "emoji": true
+        },
+        "value": "q3"
+    },
 ]
 
-export const singleQuestion = (questionValue: string = ""): KnownBlock[] => {
-    const qList = questions.filter(q => q.value != questionValue)
+export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
+    var qList = questions.filter(q => !questionValues.includes(q.value ?? ''))
+    if (!qList.length) {
+        qList = questions
+        questionValues = []
+    }
     const qIndex = Math.floor(Math.random() * qList.length)
+    const filterValues = questionValues.concat([qList[qIndex].value ?? ''])
     return [
         {
             "type": "input",
@@ -52,7 +65,7 @@ export const singleQuestion = (questionValue: string = ""): KnownBlock[] => {
                         "text": "他の質問にする",
                         "emoji": true
                     },
-                    "value": qList[qIndex].value || "",
+                    "value": filterValues.join(),
                     "action_id": nextQuestionAction
                 },
                 {

@@ -13,14 +13,14 @@ export default function () {
         try {
             const jsonStr = JSON.stringify(body)
             const jsonObj = JSON.parse(jsonStr)
-            const [userId, currentQuestionValue] = [
+            const [userId, currentQuestionValues] = [
                 jsonObj.user.id,
-                jsonObj.actions[0].value,
+                jsonObj.actions[0].value.split(','),
             ]
             await ack();
             await app.client.chat.postMessage({
                 channel: userId,
-                blocks: singleQuestion(currentQuestionValue)
+                blocks: singleQuestion(currentQuestionValues)
             });
 
         } catch (e) {
