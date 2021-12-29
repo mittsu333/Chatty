@@ -1,5 +1,5 @@
 {
-    "name": "devbots",
+    "name": "chatty",
     "version": "1.0.0",
     "description": "Slack app for develper communication",
     "main": "dist/app.js",
