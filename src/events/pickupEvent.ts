@@ -27,14 +27,19 @@ export async function pickupUsers() {
 
             await Promise.all(pickupMembers.map(channelId =>
                 new Promise((resolve, reject) => {
-                    app.client.chat.postMessage({
-                        channel: channelId,
-                        blocks: singleQuestion()
-                    })
+                    try {
+                        app.client.chat.postMessage({
+                            channel: channelId,
+                            blocks: singleQuestion()
+                        })
+                        resolve('Success')
+                    } catch (error) {
+                        reject(`${error}`)
+                    }
                 })
             ))
         }
     } else {
-        console.log(`conversations.members error|${res.error ?? "empty"}`)
+        console.log(`conversations.members error|${res.error ?? "null"}`)
     }
 }
