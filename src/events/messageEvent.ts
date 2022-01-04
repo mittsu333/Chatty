@@ -39,15 +39,15 @@ export function messageEvent() {
             const jsonObj = JSON.parse(jsonStr)
             const [userName, question, answer] = [
                 jsonObj.user.name,
-                jsonObj.message.blocks[0].label.text,
-                jsonObj.state.values[jsonObj.message.blocks[0].block_id][textInputAction].value,
+                jsonObj.message.blocks[0].text.text,
+                jsonObj.state.values[jsonObj.message.blocks[1].block_id][textInputAction].value,
             ]
-            await ack();
+            await ack()
             await app.client.chat.postMessage({
                 channel: channelId,
                 type: 'mrkdwn',
                 text: `${userName}さんに聞きました。\n> ${question}\n\n${answer}\n`
-            });
+            })
 
         } catch (e) {
             console.log(`json parse error:${e}`)

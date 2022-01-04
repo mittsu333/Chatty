@@ -6,14 +6,18 @@ export const nextQuestionAction = "next_question_action"
 export const textInputAction = "plain_text_input-action"
 
 export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
-    var qList = questions.filter(q => !questionValues.includes(q.value ?? ''))
+    var qList = questions().filter(q => !questionValues.includes(q.value ?? ''))
     if (!qList.length) {
-        qList = questions
+        qList = questions()
         questionValues = []
     }
     const qIndex = Math.floor(Math.random() * qList.length)
     const filterValues = questionValues.concat([qList[qIndex].value ?? ''])
     return [
+        {
+            "type": "section",
+            "text": qList[qIndex].text
+        },
         {
             "type": "input",
             "element": {
@@ -23,7 +27,7 @@ export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
             },
             "label": {
                 "type": "plain_text",
-                "text": qList[qIndex].text.text,
+                "text": " ", // 空文字ではエラーになる
                 "emoji": true
             }
         },
