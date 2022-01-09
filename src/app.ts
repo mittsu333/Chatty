@@ -14,10 +14,10 @@ export const app = new App({
         {
             path: '/slack/pickup',
             method: ['GET'],
-            handler: (req, res) => {
-                res.writeHead(200);
-                res.end('call pickupUsers.');
-                pickupUsers()
+            handler: async (req, res) => {
+                const pickup = await pickupUsers()
+                res.writeHead(200)
+                res.end(JSON.stringify(pickup))
             },
         },
     ]
