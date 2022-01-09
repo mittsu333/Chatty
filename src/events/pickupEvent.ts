@@ -25,17 +25,10 @@ export async function pickupUsers() {
             const selectCount = Math.min(Math.ceil(shuffleMembers.length / SELECT_RATE), SELECT_LIMIT_COUNT)
             const pickupMembers = shuffleMembers.slice(0, selectCount)
 
-            await Promise.all(pickupMembers.map(channelId =>
-                new Promise((resolve, reject) => {
-                    try {
-                        app.client.chat.postMessage({
-                            channel: channelId,
-                            blocks: singleQuestion()
-                        })
-                        resolve('Success')
-                    } catch (error) {
-                        reject(`${error}`)
-                    }
+            await Promise.all(pickupMembers.map(async (channelId) =>
+                await app.client.chat.postMessage({
+                    channel: channelId,
+                    blocks: singleQuestion()
                 })
             ))
         }
