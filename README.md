@@ -46,7 +46,6 @@ Slackのチャンネルに入っているユーザーにランダムで質問し
     * `npm install` でnode_modulesを追加
     * `npm start` で起動
     * **`curl localhost:3000/slack/pickup`** をリクエストするとチャンネル参加者にランダムで質問（DM）が飛んできます
-        * ポートが3000なのはBoltは内部でExpress使っているからです
 
 ## Slack App Manifest
 
