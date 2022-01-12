@@ -1,28 +1,26 @@
-import './../utils/env'
-import { app } from '../app'
+import "./../utils/env"
+import { app } from "../app"
 import {
     answerAction,
     nextQuestionAction,
     textInputAction,
-    singleQuestion
-} from '../models/messageModel'
+    singleQuestion,
+} from "../models/messageModel"
 
 export function messageEvent() {
-
     app.action(nextQuestionAction, async ({ body, ack }) => {
         try {
             const jsonStr = JSON.stringify(body)
             const jsonObj = JSON.parse(jsonStr)
             const [userId, currentQuestionValues] = [
                 jsonObj.user.id,
-                jsonObj.actions[0].value.split(','),
+                jsonObj.actions[0].value.split(","),
             ]
-            await ack();
+            await ack()
             await app.client.chat.postMessage({
                 channel: userId,
-                blocks: singleQuestion(currentQuestionValues)
-            });
-
+                blocks: singleQuestion(currentQuestionValues),
+            })
         } catch (e) {
             console.log(`json parse error:${e}`)
         }
@@ -40,15 +38,16 @@ export function messageEvent() {
             const [userName, question, answer] = [
                 jsonObj.user.name,
                 jsonObj.message.blocks[0].text.text,
-                jsonObj.state.values[jsonObj.message.blocks[1].block_id][textInputAction].value,
+                jsonObj.state.values[jsonObj.message.blocks[1].block_id][
+                    textInputAction
+                ].value,
             ]
             await ack()
             await app.client.chat.postMessage({
                 channel: channelId,
-                type: 'mrkdwn',
-                text: `${userName}さんに聞きました。\n> ${question}\n\n${answer}\n`
+                type: "mrkdwn",
+                text: `${userName}さんに聞きました。\n> ${question}\n\n${answer}\n`,
             })
-
         } catch (e) {
             console.log(`json parse error:${e}`)
         }

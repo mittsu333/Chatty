@@ -1,13 +1,13 @@
-import { MrkdwnOption } from '@slack/types'
+import { MrkdwnOption } from "@slack/types"
 
 export const questions = (): MrkdwnOption[] => {
     return markdownTextList.map((text: string, index: number): MrkdwnOption => {
         return {
-            "text": {
-                "type": "mrkdwn",
-                "text": text
+            text: {
+                type: "mrkdwn",
+                text: text,
             },
-            "value": `q${index}`
+            value: `q${index}`,
         }
     })
 }
@@ -37,6 +37,5 @@ const markdownTextList: string[] = [
     "最近ハマっているプログラムの書き方は？",
     "<https://qiita.com/Qiita/items/b5c1550c969776b65b9b|Qiita 週間トレンド記事一覧>の中で面白かった記事はありますか？",
     "<https://zenn.dev/|Zenn.dev trending>の中で面白かった情報はありますか？",
-    "<https://github.com/trending?since=weekly|Github weekly trending>の中で気になるリポジトリはありますか？"
+    "<https://github.com/trending?since=weekly|Github weekly trending>の中で気になるリポジトリはありますか？",
 ]
-

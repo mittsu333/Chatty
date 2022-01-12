@@ -1,7 +1,7 @@
-import './utils/env'
-import { App, LogLevel } from '@slack/bolt'
-import { messageEvent } from './events/messageEvent'
-import { pickupUsers } from './events/pickupEvent'
+import "./utils/env"
+import { App, LogLevel } from "@slack/bolt"
+import { messageEvent } from "./events/messageEvent"
+import { pickupUsers } from "./events/pickupEvent"
 
 export const app = new App({
     token: process.env.SLACK_BOT_TOKEN,
@@ -12,24 +12,24 @@ export const app = new App({
     logLevel: LogLevel.DEBUG,
     customRoutes: [
         {
-            path: '/slack/pickup',
-            method: ['GET'],
+            path: "/slack/pickup",
+            method: ["GET"],
             handler: async (req, res) => {
                 const pickup = await pickupUsers()
                 res.writeHead(200)
                 res.end(JSON.stringify(pickup))
             },
         },
-    ]
+    ],
 })
 
 app.use(async ({ next }) => {
-    await next!();
-});
+    await next!()
+})
 
-(async () => {
+;(async () => {
     await app.start()
-    console.log('⚡️ Bolt app is running!')
+    console.log("⚡️ Bolt app is running!")
 })()
 
 messageEvent()

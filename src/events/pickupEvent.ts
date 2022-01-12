@@ -1,7 +1,7 @@
-import './../utils/env'
-import { app } from '../app'
-import { shuffle } from '../utils/arrayUtils'
-import { singleQuestion } from '../models/messageModel'
+import "./../utils/env"
+import { app } from "../app"
+import { shuffle } from "../utils/arrayUtils"
+import { singleQuestion } from "../models/messageModel"
 
 // ユーザー選択割合
 const SELECT_RATE = 3
@@ -17,21 +17,27 @@ export async function pickupUsers() {
     }
 
     const res = await app.client.conversations.members({
-        channel: channelId
+        channel: channelId,
     })
     if (res.ok) {
-        const botFilterMembers = res.members?.filter(id => id != botId) ?? []
+        const botFilterMembers = res.members?.filter((id) => id != botId) ?? []
         const shuffleMembers = shuffle(botFilterMembers) ?? []
         if (shuffleMembers.length) {
-            const selectCount = Math.min(Math.ceil(shuffleMembers.length / SELECT_RATE), SELECT_LIMIT_COUNT)
+            const selectCount = Math.min(
+                Math.ceil(shuffleMembers.length / SELECT_RATE),
+                SELECT_LIMIT_COUNT
+            )
             pickupList = shuffleMembers.slice(0, selectCount)
 
-            await Promise.all(pickupList.map(async (channelId) =>
-                await app.client.chat.postMessage({
-                    channel: channelId,
-                    blocks: singleQuestion()
-                })
-            ))
+            await Promise.all(
+                pickupList.map(
+                    async (channelId) =>
+                        await app.client.chat.postMessage({
+                            channel: channelId,
+                            blocks: singleQuestion(),
+                        })
+                )
+            )
         }
     } else {
         console.log(`conversations.members error|${res.error ?? "null"}`)

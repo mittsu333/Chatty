@@ -1,61 +1,63 @@
-import { KnownBlock } from '@slack/types'
-import { questions } from '../data/questions'
+import { KnownBlock } from "@slack/types"
+import { questions } from "../data/questions"
 
 export const answerAction = "answer_action"
 export const nextQuestionAction = "next_question_action"
 export const textInputAction = "plain_text_input-action"
 
 export const singleQuestion = (questionValues: string[] = []): KnownBlock[] => {
-    var qList = questions().filter(q => !questionValues.includes(q.value ?? ''))
+    var qList = questions().filter(
+        (q) => !questionValues.includes(q.value ?? "")
+    )
     if (!qList.length) {
         qList = questions()
         questionValues = []
     }
     const qIndex = Math.floor(Math.random() * qList.length)
-    const filterValues = questionValues.concat([qList[qIndex].value ?? ''])
+    const filterValues = questionValues.concat([qList[qIndex].value ?? ""])
     return [
         {
-            "type": "section",
-            "text": qList[qIndex].text
+            type: "section",
+            text: qList[qIndex].text,
         },
         {
-            "type": "input",
-            "element": {
-                "type": "plain_text_input",
-                "multiline": true,
-                "action_id": textInputAction
+            type: "input",
+            element: {
+                type: "plain_text_input",
+                multiline: true,
+                action_id: textInputAction,
             },
-            "label": {
-                "type": "plain_text",
-                "text": " ", // 空文字ではエラーになる
-                "emoji": true
-            }
+            label: {
+                type: "plain_text",
+                text: " ", // 空文字ではエラーになる
+                emoji: true,
+            },
         },
         {
-            "type": "actions",
-            "elements": [
+            type: "actions",
+            elements: [
                 {
-                    "type": "button",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "他の質問にする",
-                        "emoji": true
+                    type: "button",
+                    text: {
+                        type: "plain_text",
+                        text: "他の質問にする",
+                        emoji: true,
                     },
-                    "value": filterValues.join(),
-                    "action_id": nextQuestionAction
+                    value: filterValues.join(),
+                    action_id: nextQuestionAction,
                 },
                 {
-                    "type": "button",
-                    "style": "primary",
-                    "text": {
-                        "type": "plain_text",
-                        "text": "投稿する",
-                        "emoji": true
+                    type: "button",
+                    style: "primary",
+                    text: {
+                        type: "plain_text",
+                        text: "投稿する",
+                        emoji: true,
                     },
-                    "value": "post_action",
-                    "action_id": answerAction
-                }
-            ]
-        }
+                    value: "post_action",
+                    action_id: answerAction,
+                },
+            ],
+        },
     ]
 }
