@@ -1,5 +1,11 @@
 # Chatty
 
+**Google Apps Scriptでの処理に切り替えました**
+
+[Chatty-for-GAS](https://github.com/mittsu333/Chatty-for-GAS)
+
+---
+
 Slackのチャンネルに入っているユーザーにランダムで質問していくBotアプリ  
 [colla](https://colla.jp/)を参考に作りました。
 
